@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="customer" type="com.subscribe.snpa.SNPA.models.CustomerDTO"/>
+        <variable name="vendor" type="com.subscribe.snpa.SNPA.models.VendorDTO"/>
+        <variable name="isVendor" type="Boolean"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+                                               android:layout_height="match_parent">
+
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context="com.example.mp.login.LoginActivity">
+
+
+                <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="52dp"
+                        android:text="R E G I S T E R"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="25sp"
+                />
+
+
+                <RadioGroup
+                        android:id="@+id/radioGroup1"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content">
+
+                    <RadioButton
+                            android:id="@+id/vendorRegistration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:text="Vendor"/>
+
+                    <RadioButton
+                            android:id="@+id/customerRegistration"
+                            android:layout_width="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="Customer"
+                            android:checked="true"
+                            android:layout_marginRight="25dp"
+                            android:layout_height="50dp"/>
+
+                </RadioGroup>
+
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <LinearLayout
+                            android:id="@+id/vendorLayoutParent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="@{isVendor ? View.VISIBLE: View.GONE}">
+
+                        <EditText
+                                android:id="@+id/vendorName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="32dp"
+                                android:layout_marginStart="32dp"
+                                android:layout_marginTop="32dp"
+                                android:ems="10"
+                                android:text="@={vendor.name}"
+                                android:hint="Vendor Name"
+
+                                android:textSize="18sp"
+                        />
+
+                        <EditText
+                                android:id="@+id/vendorEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="32dp"
+                                android:layout_marginStart="32dp"
+                                android:layout_marginTop="32dp"
+                                android:ems="10"
+                                android:hint="Vendor Email Id"
+                                android:text="@={vendor.email}"
+                                android:inputType="textEmailAddress"
+                                android:textSize="18sp"
+                        />
+
+                        <TextView
+                                android:text="Select news papers you sell!"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="20sp"
+                                android:layout_gravity="center"
+                                android:textStyle="bold"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/newsPaperRecycleView"
+                                android:layout_marginEnd="32dp"
+                                android:layout_marginStart="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/customerParent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="@{isVendor ? View.GONE: View.VISIBLE}">
+                        <EditText
+                                android:id="@+id/customerName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="32dp"
+                                android:layout_marginStart="32dp"
+                                android:layout_marginTop="32dp"
+                                android:ems="10"
+                                android:text="@={customer.name}"
+                                android:hint="Customer Name"
+
+                                android:textSize="18sp"
+                        />
+
+                        <EditText
+                                android:id="@+id/customerEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="32dp"
+                                android:layout_marginStart="32dp"
+                                android:layout_marginTop="32dp"
+                                android:ems="10"
+                                android:hint="Customer Email Id"
+                                android:text="@={customer.email}"
+                                android:inputType="textEmailAddress"
+                                android:textSize="18sp"
+                        />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                        android:text="Select your area!"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"/>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/areaRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="32dp"/>
+
+
+                <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginStart="8dp"
+                        android:visibility="invisible"
+                />
+
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+        <Button
+                android:id="@+id/register"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Register"
+
+        />
+
+    </RelativeLayout>
+</layout>
